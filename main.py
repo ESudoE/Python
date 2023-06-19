@@ -81,14 +81,16 @@ async def photo_command(message: types.Message):
 
 @dp.message_handler(Text(equals=['Рандомное местоположение']))
 async def geo_command(message: types.Message):
-    await bot.send_location(chat_id=message.from_user.id, 
-                            latitude=random.randint(10,100),
-                            longitude=random.randint(10,100))
+    y = random.randint(-90, 90)
+    x = random.randint(-90, 90)
+    await bot.send_location(chat_id=message.chat.id,
+                            latitude=x,
+                            longitude=y)
 
 
-@dp.message_handler(Text(equals='рандомное фото'))
+@dp.message_handler(Text(equals='Рандомное фото'))
 async def photo_kb_menu(message: types.Message):
-    await message.answer(text='Что бы отправть рандомнуй фоотографию нажмите: "Рандом"',
+    await message.answer(text='Что бы отправть рандомную фоотографию нажмите: "Рандом"',
                           reply_markup=menu)    
     await message.delete()
 
